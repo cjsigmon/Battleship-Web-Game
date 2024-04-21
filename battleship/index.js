@@ -4,14 +4,15 @@ const port = 3000
 const path = require('path')
 
 
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-  app.use(express.static(
-    path.join(__dirname, '../frontend')))
-})
+// app.get('/', (req, res) => {
+//   res.send("hello");
+//   app.use(express.static(path.join(__dirname, 'frontend')));
+
+// })
 
 app.post('/', (req, res) => {
     res.send('Got a POST request')
