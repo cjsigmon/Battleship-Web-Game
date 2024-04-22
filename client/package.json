@@ -1,13 +1,11 @@
 {
   "devDependencies": {
-    "snowpack": "^3.8.8"
+    "snowpack": "^3.8.8",
+    "socket.io-client": "^4.7.5"
   },
   "name": "client",
   "main": "index.js",
   "scripts": {
     "start": "snowpack dev"
-  },
-  "dependencies": {
-    "socket.io-client": "^4.7.5"
   }
 }
