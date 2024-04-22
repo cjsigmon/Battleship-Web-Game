@@ -9,6 +9,8 @@ export class Board {
     #tilesPerSide
     #tileSize
     #socket
+    #active
+    #allTiles = []
 
 
     constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize, socket) {
@@ -18,6 +20,7 @@ export class Board {
         this.#tilesPerSide = tilesPerSide;
         this.#tileSize = tileSize;
         this.#socket = socket;
+        this.#active = false;
 
         this.#element = document.createElement("div");
         this.#element.classList.add("board");
@@ -30,21 +33,40 @@ export class Board {
 
     }
 
+
+
     getElement() {
         return this.#element;
     }
 
+    evaluateFire(rowName, colName) {
+        const tile = this.getTile(rowName, colName);
+        console.log("row and col: ", rowName, colName)
+        tile.getElement().classList.add("hit");
+    }
+
+
+    getTile(rowName, colName) {
+        return this.#allTiles.find((tile) => tile.getRowName() == rowName && tile.getColName() == colName);
+    }
+
     #fillTiles() {
+        let rowName = 'a';
         for (let rows = 0; rows < this.#tilesPerSide; rows++) {
             for (let cols = 0; cols < this.#tilesPerSide; cols++) {
                 const x = this.#tileSize * cols;
                 const y = this.#tileSize * rows;
-                new Tile(this.#tileSize, this.#element, x, y, this.#boardType, this.#socket);
+                this.#allTiles.push(new Tile(this.#tileSize, this.#element, x, y, this.#boardType, this.#socket, rowName, (cols+1)))
             }
+            rowName = nextCharacter(rowName);
         }
     }
  
 
     
+}
+
+function nextCharacter(c) {
+    return String.fromCharCode(c.charCodeAt(0) + 1);
 }
 

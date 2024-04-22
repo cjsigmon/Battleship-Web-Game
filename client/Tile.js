@@ -6,17 +6,22 @@ export class Tile {
     #element;
     #type;
     #socket;
+    #rowName
+    #colName;
 
 
-    constructor(sideLen, parentElem, x, y, type, socket) {
+
+    constructor(sideLen, parentElem, x, y, type, socket, rowName, colName) {
         this.#sideLen = sideLen;
         this.#parentElem = parentElem;
         this.#x = x;
         this.#y = y;
         this.#type = type;
         this.#socket = socket;
+        this.#rowName = rowName;
+        this.#colName = colName;
 
-        this.#element = document.createElement("button");
+        this.#element = document.createElement("div");
         this.#element.classList.add("tile");
         this.#element.style.width = `${this.#sideLen}px`;
         this.#element.style.height = `${this.#sideLen}px`;
@@ -28,13 +33,29 @@ export class Tile {
 
     }
 
+    getElement() {
+        return this.#element;
+    }
+
+
+    getRowName() {
+        return this.#rowName;
+    }
+
+    getColName() {
+        return this.#colName;
+    }
+
     #click = function() {
         this.#type == "opponent" ? this.#clickOpponentSquare() : this.#clickPlayerSquare();
     }
+    
 
-    #clickOpponentSquare = function() {
+
+
+    #clickOpponentSquare() {
         console.log('opp');
-        this.#socket.emit("fire");
+        this.#socket.emit("fire", this.#rowName, this.#colName);
 
     }
 

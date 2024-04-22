@@ -7,5 +7,8 @@ export function setupBoards(boardSize, squaresPerSide, squareSize, socket) {
     const opponentBoard = new Board(boardSize, background, "opponent", squaresPerSide, squareSize, socket);
     const playerBoard = new Board(boardSize, background, "player", squaresPerSide, squareSize, socket);
 
-
+    return {
+        playerBoard: playerBoard,
+        opponentBoard: opponentBoard
+    };
 }

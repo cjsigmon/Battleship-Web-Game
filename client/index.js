@@ -4,10 +4,17 @@ import { setupBoards } from "./setupboard.js";
 
 
 const socket = io("http://localhost:3000");
+let boards = setupBoards(320, 8, 40, socket);
+
+
 socket.on("connect", () => {
     displayText(socket.id);
-    setupBoards(320, 8, 40, socket);
 });
+
+socket.on("receive-fire", (rowName, colName) => {
+    console.log(`${rowName}:${colName}`);
+    boards.playerBoard.evaluateFire(rowName, colName);
+})
 
 
 
@@ -27,6 +34,4 @@ socket.on("receive-message", (arg1) => {
     displayText(arg1);
 });
 
-socket.on("receive-fire", () => {
-    alert("receiving fire");
-})
+
