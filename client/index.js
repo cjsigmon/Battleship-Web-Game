@@ -20,4 +20,4 @@ socket.on("receive-message", (arg1) => {
 })
 
 
-setupBoards(480, 8, 60);
+setupBoards(320, 8, 40);

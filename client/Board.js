@@ -35,7 +35,7 @@ export class Board {
             for (let cols = 0; cols < this.#tilesPerSide; cols++) {
                 const x = this.#tileSize * cols;
                 const y = this.#tileSize * rows;
-                new Tile(this.#tileSize, this.#element, x, y);
+                new Tile(this.#tileSize, this.#element, x, y, this.#boardType);
             }
         }
     }
