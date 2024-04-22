@@ -24,13 +24,9 @@ io.on("connection", socket => {
     join(socket); // Fill 'players' data structure
 
     if (opponentOf(socket)) { // If the current player has an opponent the game can begin
-        socket.emit("game.begin", { // Send the game.begin event to the player
-            symbol: players[socket.id].symbol
-        });
+        socket.emit("game-begin", players[socket.id].name);
 
-        opponentOf(socket).emit("game.begin", { // Send the game.begin event to the opponent
-            symbol: players[opponentOf(socket).id].symbol 
-        });
+        opponentOf(socket).emit("game-begin", players[opponentOf(socket).id].name);
     }
 
 
@@ -43,6 +39,8 @@ io.on("connection", socket => {
         }
 
         opponentOf(socket).emit("receive-fire", x, y); // Emit for the opponent
+        socket.emit("make-inactive");
+        opponentOf(socket).emit("make-active");
     });
 
     // Event to inform player that the opponent left

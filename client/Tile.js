@@ -8,10 +8,11 @@ export class Tile {
     #socket;
     #rowName
     #colName;
+    #parent;
 
 
 
-    constructor(sideLen, parentElem, x, y, type, socket, rowName, colName) {
+    constructor(sideLen, parentElem, x, y, type, socket, rowName, colName, parent) {
         this.#sideLen = sideLen;
         this.#parentElem = parentElem;
         this.#x = x;
@@ -20,6 +21,8 @@ export class Tile {
         this.#socket = socket;
         this.#rowName = rowName;
         this.#colName = colName;
+        this.#parent = parent;
+
 
         this.#element = document.createElement("div");
         this.#element.classList.add("tile");
@@ -55,7 +58,11 @@ export class Tile {
 
     #clickOpponentSquare() {
         console.log('opp');
-        this.#socket.emit("fire", this.#rowName, this.#colName);
+        if (this.#parent.isActive()) {
+            this.#socket.emit("fire", this.#rowName, this.#colName);
+
+        }
+    
 
     }
 

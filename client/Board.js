@@ -31,7 +31,34 @@ export class Board {
 
         this.#parentElem.append(this.#element);
 
+        this.makeActive = this.makeActive.bind(this);
+        this.makeInactive = this.makeInactive.bind(this);
+        this.#socket.on("make-active", this.makeActive);
+        this.#socket.on("make-inactive", this.makeInactive);
+
+
     }
+
+    isActive() {
+        return this.#active;
+    }
+
+
+
+    makeActive() {
+        if (this.#boardType == "opponent") {
+            this.#active = true;
+            this.#element.classList.add("active")
+        }
+
+    }
+
+    makeInactive() {
+        this.#active = false;
+        this.#element.classList.remove("active")
+    }
+
+   
 
 
 
@@ -43,6 +70,9 @@ export class Board {
         const tile = this.getTile(rowName, colName);
         console.log("row and col: ", rowName, colName)
         tile.getElement().classList.add("hit");
+
+        // if valid move
+        
     }
 
 
@@ -56,7 +86,7 @@ export class Board {
             for (let cols = 0; cols < this.#tilesPerSide; cols++) {
                 const x = this.#tileSize * cols;
                 const y = this.#tileSize * rows;
-                this.#allTiles.push(new Tile(this.#tileSize, this.#element, x, y, this.#boardType, this.#socket, rowName, (cols+1)))
+                this.#allTiles.push(new Tile(this.#tileSize, this.#element, x, y, this.#boardType, this.#socket, rowName, (cols+1), this))
             }
             rowName = nextCharacter(rowName);
         }
