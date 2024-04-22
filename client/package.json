@@ -6,6 +6,7 @@
   "name": "client",
   "main": "index.js",
   "scripts": {
+    "build": "snowpack build",
     "start": "snowpack dev"
   }
 }
