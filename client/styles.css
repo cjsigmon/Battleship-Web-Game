@@ -10,6 +10,19 @@
     height: 480px;
     width:  480px;
     border: 2px solid;
+    position: relative;
+}
+
+.board {
+    border: 2px solid;
+    position: relative;
+}
+
+.tile {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid;
 }
 
 
