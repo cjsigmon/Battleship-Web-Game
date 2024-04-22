@@ -5,14 +5,16 @@ export class Tile {
     #y;
     #element;
     #type;
+    #socket;
 
 
-    constructor(sideLen, parentElem, x, y, type) {
+    constructor(sideLen, parentElem, x, y, type, socket) {
         this.#sideLen = sideLen;
         this.#parentElem = parentElem;
         this.#x = x;
         this.#y = y;
         this.#type = type;
+        this.#socket = socket;
 
         this.#element = document.createElement("button");
         this.#element.classList.add("tile");
@@ -31,7 +33,9 @@ export class Tile {
     }
 
     #clickOpponentSquare = function() {
-        console.log('opp')
+        console.log('opp');
+        this.#socket.emit("fire");
+
     }
 
     #clickPlayerSquare = function() {

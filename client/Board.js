@@ -4,16 +4,20 @@ export class Board {
     #sideLen;
     #parentElem;
     #element
-    #boardType // player opponent
+    #boardType 
+    // player opponent
     #tilesPerSide
     #tileSize
+    #socket
 
-    constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize) {
+
+    constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize, socket) {
         this.#sideLen = sideLen;
         this.#parentElem = parentElem;
         this.#boardType = boardType;
         this.#tilesPerSide = tilesPerSide;
         this.#tileSize = tileSize;
+        this.#socket = socket;
 
         this.#element = document.createElement("div");
         this.#element.classList.add("board");
@@ -35,7 +39,7 @@ export class Board {
             for (let cols = 0; cols < this.#tilesPerSide; cols++) {
                 const x = this.#tileSize * cols;
                 const y = this.#tileSize * rows;
-                new Tile(this.#tileSize, this.#element, x, y, this.#boardType);
+                new Tile(this.#tileSize, this.#element, x, y, this.#boardType, this.#socket);
             }
         }
     }
