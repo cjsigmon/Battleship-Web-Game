@@ -71,6 +71,23 @@ export class Board {
         return row.slice(startIndex, (startIndex+length))
     }
 
+    getArrayOfCols() {
+        let result = [];
+        let colName = 1;
+        for (let i = 0; i < this.#tilesPerSide; i++) {
+            let col = this.#allTiles.filter((tile) => {
+                return tile.getColName() == colName;
+            });
+            let nameCopy = [];
+            col.forEach((cell) => nameCopy.push(cell.getName()))
+            // result.push(col);
+            result.push(nameCopy);
+            colName++;
+        }
+        console.log(result);
+        return result;
+    }
+
     getArrayOfRows() {
         let result = [];
         let rowName = 'a';
