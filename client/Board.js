@@ -11,6 +11,7 @@ export class Board {
     #socket
     #active
     #allTiles = []
+    #placedShips = []
 
 
     constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize, socket) {
@@ -41,6 +42,11 @@ export class Board {
 
     isActive() {
         return this.#active;
+    }
+
+
+    placeShip(ship) {
+        // for cell occupied run method
     }
 
 

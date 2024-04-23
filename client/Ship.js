@@ -46,6 +46,24 @@ export class Ship {
         }
     }
 
+    getOrientation() {
+        return this.#orientation;
+    }
+
+    getCells() {
+        let result = [];
+        let currentRow = this.#rowName;
+        let currenCol = this.#colName;
+        for (let i = 0; i < this.#tilesLength; i++) {
+            
+
+            result.push({
+                rowName:
+            })
+        }
+        return result;
+    }
+
     getStatus() {
         return this.#status;
     }
