@@ -48,10 +48,27 @@ export class Board {
 
     placeShip(ship) {
         // for cell occupied run method
-        const emptyRow = this.findEmptyRow(ship.getTilesLength());
+        if (ship.getOrientation() == "horizantal") {
+            const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
+            const cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
+
+            ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
+
+
+        }
 
         addChild(ship.getElement(), this.getElement());
         this.occupyTiles(ship.getTiles());
+    }
+
+    getRowCells(startRowName, startColName, length) {
+        let row = this.getArrayOfRows().find((r) => {
+            return r[0].getRowName() == startRowName;
+        })
+        let startIndex = row.findIndex((cell) => {
+            return cell.getColName() == startColName;
+        });
+        return row.slice(startIndex, (startIndex+length))
     }
 
     getArrayOfRows() {
@@ -71,9 +88,25 @@ export class Board {
     findEmptyRowStart(consecutiveTilesToFind) {
         let currentRow = 'a';
         let currenCol = 1;
-        for (let searchRow = 0; searchRow < this.#tilesPerSide; searchRow++) {
-
-        }
+        this.getArrayOfRows().forEach((row) => {
+            let foundLength = 0;
+            for (let i = 0; i < row.length; i++) {
+                if (!row[i].isOccupied()) {
+                    foundLength++;
+                    if (foundLength == consecutiveTilesToFind) {
+                        currentRow = row[i].getRowName();
+                        currenCol = i - (consecutiveTilesToFind-1);
+                        return {
+                            rowName: currentRow,
+                            colName: currenCol
+                        };
+                    }
+                } else {
+                    foundLength = 0;
+                }
+            }
+        })
+        
         return {
             rowName: currentRow,
             colName: currenCol

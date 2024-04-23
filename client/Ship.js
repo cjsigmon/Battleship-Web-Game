@@ -38,7 +38,7 @@ export class Ship {
         Ship.allShips.push(this);
     }
 
-    setTopLeftTile(rowName, colName) {
+    setStartTile(rowName, colName) {
         this.#rowName = rowName;
         this.#colName = colName;
     }

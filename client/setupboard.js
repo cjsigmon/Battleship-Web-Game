@@ -7,7 +7,7 @@ export function setupBoards(boardSize, squaresPerSide, squareSize, socket) {
     const background = document.getElementById("background");
     const opponentBoard = new Board(boardSize, background, "opponent", squaresPerSide, squareSize, socket);
     const playerBoard = new Board(boardSize, background, "player", squaresPerSide, squareSize, socket);
-    playerBoard.getArrayOfRows();
+    console.log(playerBoard.getRowCells('b',2, 4));
     const AircraftCarrier = new Ship(playerBoard, squareSize, 5, "horizantal", "unplaced", "AircraftCarrier");
     const Battleship = new Ship(playerBoard, squareSize, 4, "horizantal", "unplaced", "BattleShip");
     const Cruiser = new Ship(playerBoard, squareSize, 3, "horizantal", "unplaced", "Cruiser");
