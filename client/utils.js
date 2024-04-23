@@ -8,3 +8,7 @@ export function displayText(text) {
 export function nextCharacter(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1);
 }
+
+export function addChild(child, parent) {
+    parent.append(child);
+}

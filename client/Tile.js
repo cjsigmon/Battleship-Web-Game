@@ -9,6 +9,7 @@ export class Tile {
     #rowName
     #colName;
     #parent;
+    #occupied = false
 
 
 
@@ -34,6 +35,14 @@ export class Tile {
 
         this.#parentElem.append(this.#element);
 
+    }
+
+    isOccupied() {
+        return this.#occupied;
+    }
+
+    setOccupied(tf) {
+        this.#occupied = tf;
     }
 
     getElement() {

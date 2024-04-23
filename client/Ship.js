@@ -52,7 +52,7 @@ export class Ship {
         return this.#orientation;
     }
 
-    getCells() {
+    getTiles() {
         let result = [];
         let currentRow = this.#rowName;
         let currenCol = this.#colName;
@@ -89,7 +89,7 @@ export class Ship {
         return this.#playerBoard.getElement();
     }
 
-    placeAnyPlacing() {
+    static placeAnyPlacing() {
         Ship.allShips.forEach((ship) => {
             if (ship.getStatus() == "placing") {
                 ship.setStatus("placed");
@@ -103,22 +103,29 @@ export class Ship {
         parent.append(this.#element);
     }
 
+    #placingMode() {
+        Ship.placeAnyPlacing();
+        this.#status = "placing";
+        this.#element.classList.add("clicked-ship");
+        console.log(this.getCells());
+        this.#playerBoard.placeShip(this);
+    }
+
+    #unplacedMode() {
+        this.#status = "unplaced";
+        this.setParent(Ship.shipsSelect);
+        this.#element.classList.remove("clicked-ship");
+        this.#element.classList.add("unplaced");
+    }
+
     addClickSelect() {
         this.#element.addEventListener("click", () => {
             switch(this.#status) {
                 case "unplaced":
-                    this.placeAnyPlacing();
-                    this.#status = "placing";
-                    this.setParent(this.#playerBoard.getElement());
-                    this.#element.classList.add("clicked-ship");
-                    console.log(this.getCells())
-                    
+                    this.#placingMode();
                     break;
                 case "placing":
-                    this.#status = "unplaced";
-                    this.setParent(Ship.shipsSelect);
-                    this.#element.classList.remove("clicked-ship");
-                    this.#element.classList.add("unplaced");
+                    this.#unplacedMode();
                     break;
             }
         })

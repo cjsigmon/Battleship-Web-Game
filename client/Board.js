@@ -1,4 +1,5 @@
 import { Tile } from "./Tile";
+import { addChild } from "./utils";
 
 export class Board {
     #sideLen;
@@ -47,6 +48,22 @@ export class Board {
 
     placeShip(ship) {
         // for cell occupied run method
+        addChild(ship.getElement(), this.getElement());
+        this.occupyTiles(ship.getTiles())
+
+
+    }
+
+    occupyTiles(tiles) {
+        tiles.forEach((tile) => {
+            tile.setOccupied(true);
+        })
+    }
+
+    deOccupyTiles(tiles) {
+        tiles.forEach((tile) => {
+            tile.setOccupied(false);
+        })
     }
 
 
