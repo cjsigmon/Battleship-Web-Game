@@ -53,17 +53,11 @@ export class Tile {
         this.#type == "opponent" ? this.#clickOpponentSquare() : this.#clickPlayerSquare();
     }
     
-
-
-
     #clickOpponentSquare() {
         console.log('opp');
         if (this.#parent.isActive()) {
             this.#socket.emit("fire", this.#rowName, this.#colName);
-
         }
-    
-
     }
 
     #clickPlayerSquare = function() {
