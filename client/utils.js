@@ -4,4 +4,3 @@ export function displayText(text) {
     textElem.innerText = text;
     elem.append(textElem);
 }
-

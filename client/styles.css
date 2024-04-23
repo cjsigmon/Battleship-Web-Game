@@ -15,20 +15,43 @@
     margin: 16px;
 }
 
+
+
 .active {
     border: 20px solid green;
+}
+
+.unplaced-ship {
+    position: relative;
+
+}
+
+.clicked-ship, .placed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: 5px solid yellow;
+}
+
+.placed {
+    border: none;
+    outline: none;
 }
 
 .tile {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid;
+    outline: 1px solid;
+    background: none    ;
+}
+
+img {
+    margin: 0 !important;
 }
 
 .hit {
     background-color: red;
-
 }
 
 
