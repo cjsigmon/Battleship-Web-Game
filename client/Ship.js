@@ -38,6 +38,11 @@ export class Ship {
         Ship.allShips.push(this);
     }
 
+    setTopLeftTile(rowName, colName) {
+        this.#rowName = rowName;
+        this.#colName = colName;
+    }
+
     renderImgDimensions() {
         if (this.#orientation == "vertical") {
             this.#element.style.width = `${this.#squareSize}px`;
@@ -50,6 +55,10 @@ export class Ship {
 
     getOrientation() {
         return this.#orientation;
+    }
+
+    getTilesLength() {
+        return this.#tilesLength;
     }
 
     getTiles() {

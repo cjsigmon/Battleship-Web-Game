@@ -37,6 +37,10 @@ export class Tile {
 
     }
 
+    getName() {
+        return `${this.getRowName()}${this.getColName()}`
+    }
+
     isOccupied() {
         return this.#occupied;
     }

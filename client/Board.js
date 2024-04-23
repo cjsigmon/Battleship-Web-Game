@@ -48,10 +48,36 @@ export class Board {
 
     placeShip(ship) {
         // for cell occupied run method
+        const emptyRow = this.findEmptyRow(ship.getTilesLength());
+
         addChild(ship.getElement(), this.getElement());
-        this.occupyTiles(ship.getTiles())
+        this.occupyTiles(ship.getTiles());
+    }
 
+    getArrayOfRows() {
+        let result = [];
+        let rowName = 'a';
+        for (let i = 0; i < this.#tilesPerSide; i++) {
+            let row = this.#allTiles.filter((tile) => {
+                return tile.getRowName() == rowName;
+            })
+            result.push(row);
+            rowName = nextCharacter(rowName);
+        }
+        console.log(result);
+        return result;
+    }
 
+    findEmptyRowStart(consecutiveTilesToFind) {
+        let currentRow = 'a';
+        let currenCol = 1;
+        for (let searchRow = 0; searchRow < this.#tilesPerSide; searchRow++) {
+
+        }
+        return {
+            rowName: currentRow,
+            colName: currenCol
+        };
     }
 
     occupyTiles(tiles) {
