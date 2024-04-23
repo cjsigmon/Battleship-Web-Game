@@ -61,10 +61,20 @@ export class Board {
         this.occupyTiles(ship.getTiles());
     }
 
+    getColCells(startRowName, startColName, length) {
+        let col = this.getArrayOfCols().find((c) => {
+            return c[0].getColName() == startColName;
+        });
+        let startIndex = col.findIndex((cell) => {
+            return cell.getRowName() == startRowName;
+        });
+        return col.slice(startIndex, (startIndex+length));
+    }
+
     getRowCells(startRowName, startColName, length) {
         let row = this.getArrayOfRows().find((r) => {
             return r[0].getRowName() == startRowName;
-        })
+        });
         let startIndex = row.findIndex((cell) => {
             return cell.getColName() == startColName;
         });
@@ -78,10 +88,8 @@ export class Board {
             let col = this.#allTiles.filter((tile) => {
                 return tile.getColName() == colName;
             });
-            let nameCopy = [];
-            col.forEach((cell) => nameCopy.push(cell.getName()))
-            // result.push(col);
-            result.push(nameCopy);
+
+            result.push(col);
             colName++;
         }
         console.log(result);
