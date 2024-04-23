@@ -1,3 +1,5 @@
+import { nextCharacter } from "./utils"
+
 export class Ship {
     #playerBoard
     #squareSize
@@ -61,6 +63,12 @@ export class Ship {
                 rowName: currentRow,
                 colName: currenCol
             });
+            if (this.#orientation == "vertical") {
+                currentRow = nextCharacter(currentRow);
+
+            } else {
+                currenCol++;
+            }
         }
         return result;
     }
@@ -102,7 +110,8 @@ export class Ship {
                     this.placeAnyPlacing();
                     this.#status = "placing";
                     this.setParent(this.#playerBoard.getElement());
-                    this.#element.classList.add("clicked-ship")
+                    this.#element.classList.add("clicked-ship");
+                    console.log(this.getCells())
                     
                     break;
                 case "placing":

@@ -4,3 +4,7 @@ export function displayText(text) {
     textElem.innerText = text;
     elem.append(textElem);
 }
+
+export function nextCharacter(c) {
+    return String.fromCharCode(c.charCodeAt(0) + 1);
+}
