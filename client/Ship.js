@@ -55,11 +55,12 @@ export class Ship {
         let currentRow = this.#rowName;
         let currenCol = this.#colName;
         for (let i = 0; i < this.#tilesLength; i++) {
-            
+
 
             result.push({
-                rowName:
-            })
+                rowName: currentRow,
+                colName: currenCol
+            });
         }
         return result;
     }
