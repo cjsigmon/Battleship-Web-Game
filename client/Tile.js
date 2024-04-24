@@ -9,7 +9,8 @@ export class Tile {
     #rowName
     #colName;
     #parent;
-    #occupied = false
+    #occupied = false;
+    #hit = false;
 
 
 
@@ -39,6 +40,14 @@ export class Tile {
 
     getName() {
         return `${this.getRowName()}${this.getColName()}`
+    }
+
+    isHit() {
+        return this.#hit;
+    }
+
+    hit() {
+        this.#hit = true;
     }
 
     isOccupied() {
