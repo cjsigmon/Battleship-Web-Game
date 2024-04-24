@@ -1,4 +1,4 @@
-import { nextCharacter } from "./utils"
+import { nextCharacter, prevCharacter } from "./utils"
 import { letterToNumber } from "./utils"
 
 export class Ship {
@@ -127,13 +127,52 @@ export class Ship {
         parent.append(this.#element);
     }
 
+    // 
+    // left = 37
+    // up = 38
+    // right = 39
+    // down = 40
+
     makeMovable() {
-        console.log('callled memee')
         this.#playerBoard.placeShip(this);
         document.addEventListener('keydown', (e) => {
-            console.log('Keypress event triggered');
+            switch(e.code) {
+                case "ArrowLeft":
+                    this.tryMoveDirection('l');
+                    break;
+                case "ArrowRight":
+                    this.tryMoveDirection('r');
+                    break;
+                case "ArrowDown":
+                    this.tryMoveDirection('d');
+                    break;
+                case "ArrowUp":
+                    this.tryMoveDirection('u');
+                    break;
+            }
             // You might want to perform some actions here based on the keypress
         });
+    }
+
+
+    tryMoveDirection(direction) {
+        switch(direction) {
+            case 'l':
+                if (this.#x > 0) {
+                    this.setStartTile(this.#rowName, this.#colName-1);
+                }
+                break;
+            case 'r':
+                break;
+            case 'd':
+                break;
+            case 'u':
+                if (this.#y > 0) {
+                    this.setStartTile(prevCharacter(this.#rowName), this.#colName);
+                }
+                break;
+
+        }
     }
 
 

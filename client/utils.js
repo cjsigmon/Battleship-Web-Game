@@ -9,6 +9,10 @@ export function nextCharacter(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1);
 }
 
+export function prevCharacter(c) {
+    return String.fromCharCode(c.charCodeAt(0) - 1);
+}
+
 export function letterToNumber(letter) {
     letter = letter.toUpperCase();
     return letter.charCodeAt(0) - 64;
