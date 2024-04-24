@@ -63,7 +63,6 @@ export class Tile {
     setOccupied(tf) {
         this.#occupied = tf;
         if (tf) {
-            console.log("reached here");
             this.#element.classList.add('occupied');
 
         } 
@@ -94,7 +93,6 @@ export class Tile {
     }
 
     #clickPlayerSquare = function() {
-        console.log('pla')
     };
     
 }

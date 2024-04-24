@@ -54,21 +54,47 @@ export class Board {
         return this.#active;
     }
 
+    projectShip(ship) {
+        // for cell occupied run method
+        let cellsToOccupy;
+
+        if (ship.getOrientation() == "horizantal") {
+             
+                const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
+                cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
+                ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
+            
+            
+
+        }
+
+        addChild(ship.getElement(), this.getElement());
+    }
+
 
     placeShip(ship) {
         // for cell occupied run method
+        let cellsToOccupy;
+
         if (ship.getOrientation() == "horizantal") {
-            const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
-            const cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
-            ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
+            if (ship.isNotOverlapping()) {
+
+                cellsToOccupy = ship.getPotentialTiles();
+            } else {
+                const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
+                cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
+                ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
+                // addChild(ship.getElement(), this.getElement());
+
+            }
+            
             ship.setTiles(cellsToOccupy);
             cellsToOccupy.forEach((cell) => {
                 cell.setOccupied(true);
             });
         }
 
-        addChild(ship.getElement(), this.getElement());
-        this.occupyTiles(ship.getTiles());
+        // this.occupyTiles(ship.getTiles());
     }
 
     getColCells(startRowName, startColName, length) {
@@ -102,7 +128,6 @@ export class Board {
             result.push(col);
             colName++;
         }
-        console.log(result);
         return result;
     }
 
@@ -116,7 +141,6 @@ export class Board {
             result.push(row);
             rowName = nextCharacter(rowName);
         }
-        console.log(result);
         return result;
     }
 
@@ -151,7 +175,6 @@ export class Board {
     occupyTiles(tiles) {
         let i = 0;
         tiles.forEach((tile) => {
-            console.log("here", ++i)
             tile.setOccupied(true);
         })
     }

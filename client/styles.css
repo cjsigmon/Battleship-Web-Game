@@ -26,11 +26,14 @@
 
 }
 
-.clicked-ship, .placed {
-    position: absolute;
+.clicked-ship {
     top: 0;
     left: 0;
     outline: 5px solid yellow;
+}
+
+.clicked-ship, .placed {
+    position: absolute;
 }
 
 .placed {

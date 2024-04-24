@@ -37,8 +37,10 @@ export class Ship {
         }
         this.renderImgDimensions();
         this.addClickSelect();
-        this.makeMovable = this.makeMovable.bind(this);
-        this.makeImmovable = this.makeImmovable.bind(this);
+        // this.makeMovable = this.makeMovable.bind(this);
+        // this.makeImmovable = this.makeImmovable.bind(this);
+        this.evalKeyDownBound = this.evalKeyDown.bind(this);
+
 
 
         Ship.allShips.push(this);
@@ -70,6 +72,13 @@ export class Ship {
         return this.#height;
     }
 
+    getRowName() {
+        return this.#rowName;
+    }
+    getColName() {
+        return this.#colName;
+    }
+
 
 
     setXY(rowName, colName) {
@@ -87,6 +96,10 @@ export class Ship {
         this.#colName = colName;
         this.setXY(rowName, colName);
 
+    }
+
+    getStartTileName() {
+        return `${this.#rowName}${this.#colName}`;
     }
 
     renderImgDimensions() {
@@ -131,11 +144,18 @@ export class Ship {
         return this.#playerBoard.getElement();
     }
 
+    placeOnPlayerBoard() {
+        this.#playerBoard.placeShip(this);
+        this.#placedMode();
+    }
+
     static placeAnyPlacing() {
         Ship.allShips.forEach((ship) => {
             if (ship.getStatus() == "placing") {
                 ship.setStatus("placed");
                 ship.getElement().classList.add("placed");
+                ship.placeOnPlayerBoard();
+                
 
             }
         })
@@ -152,24 +172,32 @@ export class Ship {
     // down = 40
 
     makeMovable() {
-        this.#playerBoard.placeShip(this);
-        document.addEventListener('keydown', (e) => {
-            switch(e.code) {
-                case "ArrowLeft":
-                    this.tryMoveDirection('l');
-                    break;
-                case "ArrowRight":
-                    this.tryMoveDirection('r');
-                    break;
-                case "ArrowDown":
-                    this.tryMoveDirection('d');
-                    break;
-                case "ArrowUp":
-                    this.tryMoveDirection('u');
-                    break;
-            }
-            // You might want to perform some actions here based on the keypress
-        });
+        document.addEventListener('keydown', this.evalKeyDownBound);
+    }
+
+    makeImmovable() {
+        document.removeEventListener('keydown', this.evalKeyDownBound);
+    }
+
+    evalKeyDown(e) {
+        switch(e.code) {
+            case "Enter":
+                this.placeOnPlayerBoard();
+            case "ArrowLeft":
+                this.tryMoveDirection('l');
+                break;
+            case "ArrowRight":
+                this.tryMoveDirection('r');
+                break;
+            case "ArrowDown":
+                this.tryMoveDirection('d');
+                break;
+            case "ArrowUp":
+                this.tryMoveDirection('u');
+                break;
+            
+        }
+        // You might want to perform some actions here based on the keypress
     }
 
 
@@ -201,19 +229,30 @@ export class Ship {
     }
 
 
-
-    evaluateOverlap() {
-
+    getPotentialTiles() {
+        let result = this.#playerBoard.getRowCells(this.#rowName, this.#colName, this.#tilesLength);
+        return result;
     }
 
-    makeImmovable() {
+    isNotOverlapping() {
+        return this.getPotentialTiles().every((tile) => {
+            return !tile.isOccupied();
+        })
+    }
 
+
+    #placedMode() {
+        this.#status = "placed";
+        this.#element.classList.remove("clicked-ship");
+        this.#element.classList.add("placed");
+        this.makeImmovable();
     }
 
     #placingMode() {
         Ship.placeAnyPlacing();
         this.#status = "placing";
         this.#element.classList.add("clicked-ship");
+        this.#playerBoard.projectShip(this);
         this.makeMovable();
     }
 
