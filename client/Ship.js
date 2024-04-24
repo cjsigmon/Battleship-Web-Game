@@ -1,5 +1,7 @@
 import { nextCharacter, prevCharacter } from "./utils"
 import { letterToNumber } from "./utils"
+let placeShipBtn = document.getElementById("placeShipBtn");
+
 
 export class Ship {
     #playerBoard
@@ -179,10 +181,10 @@ export class Ship {
         document.removeEventListener('keydown', this.evalKeyDownBound);
     }
 
+
+
     evalKeyDown(e) {
         switch(e.code) {
-            case "Enter":
-                this.placeOnPlayerBoard();
             case "ArrowLeft":
                 this.tryMoveDirection('l');
                 break;
@@ -246,12 +248,15 @@ export class Ship {
         this.#element.classList.remove("clicked-ship");
         this.#element.classList.add("placed");
         this.makeImmovable();
+        placeShipBtn.style.display = 'none';
     }
 
     #placingMode() {
         Ship.placeAnyPlacing();
         this.#status = "placing";
         this.#element.classList.add("clicked-ship");
+        placeShipBtn.style.display = 'block';
+
         this.#playerBoard.projectShip(this);
         this.makeMovable();
     }
@@ -275,6 +280,6 @@ export class Ship {
             }
         })
     }
-
-
 }
+
+placeShipBtn.addEventListener("click", Ship.placeAnyPlacing)

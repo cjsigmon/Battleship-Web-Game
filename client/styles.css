@@ -32,8 +32,17 @@
     outline: 5px solid yellow;
 }
 
-.clicked-ship, .placed {
+.clicked-ship, .placed, button {
     position: absolute;
+}
+
+#placeShipBtn {
+    right: 24vw;
+    bottom: 20vh;
+    min-width: 88px;
+    padding: 16px;
+    background-color: green;
+    display: none;
 }
 
 .placed {
