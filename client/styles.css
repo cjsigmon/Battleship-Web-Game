@@ -53,6 +53,9 @@ img {
 .hit {
     background-color: red;
 }
+.miss {
+    background-color: gray;
+}
 
 .occupied {
     outline-color: blanchedalmond;

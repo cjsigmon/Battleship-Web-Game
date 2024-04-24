@@ -39,9 +39,22 @@ io.on("connection", socket => {
         }
 
         opponentOf(socket).emit("receive-fire", x, y); // Emit for the opponent
+
+    });
+
+    socket.on("hit", function(rowName, colName) {
+        opponentOf(socket).emit("my-fire-hit", rowName, colName); // Emit for the opponent
         socket.emit("make-inactive");
         opponentOf(socket).emit("make-active");
     });
+
+    socket.on("miss", function(rowName, colName) {
+        opponentOf(socket).emit("my-fire-missed", rowName, colName); // Emit for the opponent
+        socket.emit("make-inactive");
+        opponentOf(socket).emit("make-active");
+    });
+
+
 
     // Event to inform player that the opponent left
     socket.on("disconnect", function() {

@@ -179,8 +179,16 @@ export class Board {
 
     evaluateFire(rowName, colName) {
         const tile = this.getTile(rowName, colName);
-        console.log("row and col: ", rowName, colName)
-        tile.getElement().classList.add("hit");
+        if (!tile.isOccupied()) {
+            tile.getElement().classList.add("miss");
+            this.#socket.emit("miss", rowName, colName);
+        }
+        else if (tile.isOccupied() && !tile.isHit()) {
+            tile.hit();
+            tile.getElement().classList.add("hit");
+            this.#socket.emit("hit", rowName, colName);
+
+        } 
 
         // if valid move
         

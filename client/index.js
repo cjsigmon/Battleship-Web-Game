@@ -22,15 +22,20 @@ socket.on("game-begin", (name) => {
     } 
 })
 
-socket.on("hit", () => {
-    alert("hit!")
-})
+
 
 socket.on("receive-fire", (rowName, colName) => {
     console.log(`${rowName}:${colName}`);
     boards.playerBoard.evaluateFire(rowName, colName);
-    socket.emit("hit");
-})
+});
+
+socket.on("my-fire-hit", (rowName, colName) => {
+    boards.opponentBoard.getTile(rowName, colName).hit();
+});
+
+socket.on("my-fire-missed", (rowName, colName) => {
+    boards.opponentBoard.getTile(rowName, colName).miss();
+});
 
 
 

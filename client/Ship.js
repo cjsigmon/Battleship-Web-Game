@@ -19,6 +19,8 @@ export class Ship {
     #occupiedTiles = []
     static shipsSelect = document.getElementById("shipsSelect");
     static allShips = [];
+    #hits = 0;
+    #sunk = false;
 
     constructor(playerBoard, squareSize, tilesLength, orientation, status, name) {
         this.#playerBoard = playerBoard;
@@ -39,6 +41,16 @@ export class Ship {
 
         Ship.allShips.push(this);
     }
+
+    receiveHit() {
+        if (this.#occupiedTiles.every((tile) => tile.isHit())) {
+            this.#sunk = true;
+        }
+    }
+
+    isSunk() {return this.#sunk}
+
+
 
     setXY(rowName, colName) {
         let left = (colName-1) * this.#squareSize;

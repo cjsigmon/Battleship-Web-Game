@@ -42,12 +42,17 @@ export class Tile {
         return `${this.getRowName()}${this.getColName()}`
     }
 
+    miss() {
+        this.#element.classList.add("miss");
+    }
+
     isHit() {
         return this.#hit;
     }
 
     hit() {
         this.#hit = true;
+        this.#element.classList.add('hit')
     }
 
     isOccupied() {
