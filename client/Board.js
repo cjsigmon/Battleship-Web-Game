@@ -50,9 +50,14 @@ export class Board {
         // for cell occupied run method
         if (ship.getOrientation() == "horizantal") {
             const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
+            console.log("emptyRowStart", emptyRowStart)
             const cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
-
+            console.log("cellsToOccupy", cellsToOccupy)
             ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
+            ship.setTiles(cellsToOccupy);
+            cellsToOccupy.forEach((cell) => {
+                cell.setOccupied(true);
+            })
 
 
         }
@@ -120,7 +125,7 @@ export class Board {
                     foundLength++;
                     if (foundLength == consecutiveTilesToFind) {
                         currentRow = row[i].getRowName();
-                        currenCol = i - (consecutiveTilesToFind-1);
+                        currenCol = row[i].getColName() - (consecutiveTilesToFind -1);
                         return {
                             rowName: currentRow,
                             colName: currenCol
@@ -139,7 +144,9 @@ export class Board {
     }
 
     occupyTiles(tiles) {
+        let i = 0;
         tiles.forEach((tile) => {
+            console.log("here", ++i)
             tile.setOccupied(true);
         })
     }

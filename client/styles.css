@@ -43,7 +43,7 @@
     left: 0;
     top: 0;
     outline: 1px solid;
-    background: none    ;
+    background: none;
 }
 
 img {
@@ -52,6 +52,11 @@ img {
 
 .hit {
     background-color: red;
+}
+
+.occupied {
+    outline-color: blanchedalmond;
+
 }
 
 

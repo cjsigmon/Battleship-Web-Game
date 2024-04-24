@@ -15,6 +15,7 @@ export class Ship {
     #width
     #x
     #y
+    #occupiedTiles = []
     static shipsSelect = document.getElementById("shipsSelect");
     static allShips = [];
 
@@ -61,25 +62,12 @@ export class Ship {
         return this.#tilesLength;
     }
 
+    setTiles(tiles) {
+        this.#occupiedTiles = tiles;
+    }
+
     getTiles() {
-        let result = [];
-        let currentRow = this.#rowName;
-        let currenCol = this.#colName;
-        for (let i = 0; i < this.#tilesLength; i++) {
-
-
-            result.push({
-                rowName: currentRow,
-                colName: currenCol
-            });
-            if (this.#orientation == "vertical") {
-                currentRow = nextCharacter(currentRow);
-
-            } else {
-                currenCol++;
-            }
-        }
-        return result;
+        return this.#occupiedTiles;
     }
 
     getStatus() {
@@ -116,7 +104,6 @@ export class Ship {
         Ship.placeAnyPlacing();
         this.#status = "placing";
         this.#element.classList.add("clicked-ship");
-        console.log(this.getCells());
         this.#playerBoard.placeShip(this);
     }
 
