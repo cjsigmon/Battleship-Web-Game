@@ -42,6 +42,14 @@ export class Board {
 
     }
 
+    getWidth() {
+        return (this.#tileSize * this.#tilesPerSide);
+    }
+
+    getHeight() {
+        return (this.#tileSize * this.#tilesPerSide);
+    }
+
     isActive() {
         return this.#active;
     }

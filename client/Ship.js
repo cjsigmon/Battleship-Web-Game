@@ -52,6 +52,24 @@ export class Ship {
 
     isSunk() {return this.#sunk}
 
+    getWidth() {
+        if (this.#orientation == "vertical") {
+            this.#width =this.#squareSize;
+        } else {
+            this.#width = this.#squareSize * this.#tilesLength;
+        }
+        return this.#width;
+    }
+
+    getHeight() {
+        if (this.#orientation == "vertical") {
+            this.#height = this.#squareSize * this.#tilesLength;
+        } else {
+            this.#height = this.#squareSize;
+        }
+        return this.#height;
+    }
+
 
 
     setXY(rowName, colName) {
@@ -163,8 +181,15 @@ export class Ship {
                 }
                 break;
             case 'r':
+                if ((this.#x + this.getWidth()) < this.#playerBoard.getWidth())  {
+                    this.setStartTile(this.#rowName, this.#colName+1);
+                }
                 break;
             case 'd':
+                if ((this.#y + this.getHeight()) < this.#playerBoard.getHeight()) {
+
+                    this.setStartTile(nextCharacter(this.#rowName), this.#colName);
+                }
                 break;
             case 'u':
                 if (this.#y > 0) {
