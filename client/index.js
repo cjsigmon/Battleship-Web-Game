@@ -20,7 +20,14 @@ socket.on("game-begin", (name) => {
         boards.opponentBoard.makeActive();
 
     } 
-})
+});
+
+socket.on('make-active', () => {
+    boards.opponentBoard.makeActive();
+});
+socket.on('make-inactive', () => {
+    boards.opponentBoard.makeInactive();
+});
 
 
 

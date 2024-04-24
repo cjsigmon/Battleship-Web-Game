@@ -44,14 +44,14 @@ io.on("connection", socket => {
 
     socket.on("hit", function(rowName, colName) {
         opponentOf(socket).emit("my-fire-hit", rowName, colName); // Emit for the opponent
-        socket.emit("make-inactive");
-        opponentOf(socket).emit("make-active");
+        socket.emit("make-active");
+        opponentOf(socket).emit("make-inactive");
     });
 
     socket.on("miss", function(rowName, colName) {
         opponentOf(socket).emit("my-fire-missed", rowName, colName); // Emit for the opponent
-        socket.emit("make-inactive");
-        opponentOf(socket).emit("make-active");
+        socket.emit("make-active");
+        opponentOf(socket).emit("make-inactive");
     });
 
 

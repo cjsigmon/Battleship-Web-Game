@@ -11,6 +11,7 @@ export class Tile {
     #parent;
     #occupied = false;
     #hit = false;
+    #alreadyClicked = false;
 
 
 
@@ -86,9 +87,9 @@ export class Tile {
     }
     
     #clickOpponentSquare() {
-        console.log('opp');
-        if (this.#parent.isActive()) {
+        if (this.#parent.isActive() && !this.#alreadyClicked) {
             this.#socket.emit("fire", this.#rowName, this.#colName);
+            this.#alreadyClicked = true;
         }
     }
 
