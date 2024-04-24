@@ -12,6 +12,7 @@ export class Tile {
     #occupied = false;
     #hit = false;
     #alreadyClicked = false;
+    #occupyingShip
 
 
 
@@ -60,12 +61,20 @@ export class Tile {
         return this.#occupied;
     }
 
-    setOccupied(tf) {
+    setOccupied(tf, ship) {
         this.#occupied = tf;
         if (tf) {
             this.#element.classList.add('occupied');
+            this.#occupyingShip = ship;
+        } else {
+            this.#element.classList.remove('occupied');
+            this.#occupyingShip = undefined;
+        }
 
-        } 
+    }
+
+    getOccupyingShip() {
+        return this.#occupyingShip;
     }
 
     getElement() {

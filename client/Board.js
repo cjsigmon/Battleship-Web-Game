@@ -90,7 +90,7 @@ export class Board {
             
             ship.setTiles(cellsToOccupy);
             cellsToOccupy.forEach((cell) => {
-                cell.setOccupied(true);
+                cell.setOccupied(true, ship);
             });
         }
 
