@@ -13,6 +13,7 @@ export function setupBoards(boardSize, squaresPerSide, squareSize, socket) {
     const Cruiser = new Ship(playerBoard, squareSize, 3, "horizantal", "unplaced", "Cruiser");
     const PatrolBoat = new Ship(playerBoard, squareSize, 2, "horizantal", "unplaced", "PatrolBoat");
     const Submarine = new Ship(playerBoard, squareSize, 2, "horizantal", "unplaced", "Submarine");
+
     
 
 

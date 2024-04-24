@@ -1,5 +1,6 @@
 import { Tile } from "./Tile";
 import { addChild } from "./utils";
+import { letterToNumber } from "./utils";
 
 export class Board {
     #sideLen;
@@ -50,16 +51,13 @@ export class Board {
         // for cell occupied run method
         if (ship.getOrientation() == "horizantal") {
             const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
-            console.log("emptyRowStart", emptyRowStart)
             const cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
-            console.log("cellsToOccupy", cellsToOccupy)
             ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
             ship.setTiles(cellsToOccupy);
             cellsToOccupy.forEach((cell) => {
                 cell.setOccupied(true);
-            })
-
-
+            });
+            ship.setXY(emptyRowStart.rowName, emptyRowStart.colName);
         }
 
         addChild(ship.getElement(), this.getElement());

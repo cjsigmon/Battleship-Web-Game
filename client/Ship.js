@@ -1,4 +1,5 @@
 import { nextCharacter } from "./utils"
+import { letterToNumber } from "./utils"
 
 export class Ship {
     #playerBoard
@@ -37,6 +38,16 @@ export class Ship {
 
 
         Ship.allShips.push(this);
+    }
+
+    setXY(rowName, colName) {
+        let left = (colName-1) * this.#squareSize;
+        let rowNum = letterToNumber(rowName);
+        let top = (rowNum-1) * this.#squareSize;
+        this.#x = left;
+        this.#y = top;
+        this.getElement().style.left = `${this.#x}px`;
+        this.getElement().style.top = `${this.#y}px`;
     }
 
     setStartTile(rowName, colName) {
