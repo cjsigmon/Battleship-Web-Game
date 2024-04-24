@@ -37,6 +37,8 @@ export class Ship {
         }
         this.renderImgDimensions();
         this.addClickSelect();
+        this.makeMovable = this.makeMovable.bind(this);
+        this.makeImmovable = this.makeImmovable.bind(this);
 
 
         Ship.allShips.push(this);
@@ -125,11 +127,30 @@ export class Ship {
         parent.append(this.#element);
     }
 
+    makeMovable() {
+        console.log('callled memee')
+        this.#playerBoard.placeShip(this);
+        document.addEventListener('keydown', (e) => {
+            console.log('Keypress event triggered');
+            // You might want to perform some actions here based on the keypress
+        });
+    }
+
+
+
+    evaluateOverlap() {
+
+    }
+
+    makeImmovable() {
+
+    }
+
     #placingMode() {
         Ship.placeAnyPlacing();
         this.#status = "placing";
         this.#element.classList.add("clicked-ship");
-        this.#playerBoard.placeShip(this);
+        this.makeMovable();
     }
 
     #unplacedMode() {
