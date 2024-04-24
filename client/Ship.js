@@ -58,7 +58,7 @@ export class Ship {
     renderImgDimensions() {
         if (this.#orientation == "vertical") {
             this.#element.style.width = `${this.#squareSize}px`;
-            this.#element.style.he = `${this.#squareSize * this.#tilesLength}px`
+            this.#element.style.height = `${this.#squareSize * this.#tilesLength}px`
         } else {
             this.#element.style.height = `${this.#squareSize}px`;
             this.#element.style.width = `${this.#squareSize * this.#tilesLength}px`
