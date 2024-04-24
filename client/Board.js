@@ -57,7 +57,6 @@ export class Board {
             cellsToOccupy.forEach((cell) => {
                 cell.setOccupied(true);
             });
-            ship.setXY(emptyRowStart.rowName, emptyRowStart.colName);
         }
 
         addChild(ship.getElement(), this.getElement());

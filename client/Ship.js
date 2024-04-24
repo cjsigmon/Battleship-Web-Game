@@ -53,6 +53,8 @@ export class Ship {
     setStartTile(rowName, colName) {
         this.#rowName = rowName;
         this.#colName = colName;
+        this.setXY(rowName, colName);
+
     }
 
     renderImgDimensions() {
