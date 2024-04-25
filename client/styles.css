@@ -26,6 +26,11 @@
 
 }
 
+#hiScores {
+    position: absolute;
+    top: 50vh;
+}
+
 .clicked-ship {
     top: 0;
     left: 0;

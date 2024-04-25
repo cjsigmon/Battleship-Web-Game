@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { displayText } from "./utils.js";
+import { displayText, showHighScores } from "./utils.js";
 import { setupBoards } from "./setupboard.js";
 
 
@@ -15,6 +15,7 @@ socket.on("connect", () => {
 
 socket.on("scores", (rows) => {
     console.table(rows);
+    showHighScores(rows)
 })
 
 socket.on("game-begin", (name) => {

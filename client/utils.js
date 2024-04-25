@@ -21,3 +21,20 @@ export function letterToNumber(letter) {
 export function addChild(child, parent) {
     parent.append(child);
 }
+
+const scoreTable = document.getElementById("hiScores");
+export function showHighScores(rows) {
+    rows = rows.slice(0,10);
+    rows.forEach((r) => {
+        const newRow = document.createElement('tr');
+        const initialsCell = document.createElement('td');
+        const scoreCell = document.createElement('td');
+        initialsCell.innerText = r.initials;
+        scoreCell.innerText = r.score;
+        addChild(initialsCell, newRow);
+        addChild(scoreCell, newRow);
+
+        addChild(newRow, scoreTable)
+    })
+
+}
