@@ -14,7 +14,7 @@ socket.on("connect", () => {
 });
 
 socket.on("scores", (rows) => {
-    console.log(rows);
+    console.table(rows);
 })
 
 socket.on("game-begin", (name) => {
