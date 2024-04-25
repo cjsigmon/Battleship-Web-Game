@@ -14,6 +14,7 @@ export class Board {
     #active
     #allTiles = []
     #placedShips = []
+    #shipsSunk = 0;
 
 
     constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize, socket) {
@@ -93,6 +94,8 @@ export class Board {
                 cell.setOccupied(true, ship);
             });
         }
+
+        this.#placedShips.push(ship);
 
         // this.occupyTiles(ship.getTiles());
     }
@@ -206,8 +209,16 @@ export class Board {
     }
 
     sunkShip(ship) {
-        alert(ship.getName());
-        this.#socket.emit("sunk-ship", ship.getName());
+        this.#socket.emit("ship-sunk", ship.getName());
+        this.#shipsSunk++;
+        this.checkGameOver()
+    }
+
+    checkGameOver() {
+        if (this.#shipsSunk == this.#placedShips.length) {
+            this.#socket.emit("game-over", );
+        }
+
     }
 
 

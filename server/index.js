@@ -32,7 +32,6 @@ io.on("connection", socket => {
 
 
     socket.on("fire", function(x, y) {
-
         if (!opponentOf(socket)) {
             // This shouldn't be possible since if a player doens't have an opponent the game board is disabled
             return;
@@ -53,6 +52,16 @@ io.on("connection", socket => {
         socket.emit("make-active");
         opponentOf(socket).emit("make-inactive");
     });
+
+    socket.on("ship-sunk", (shipName) => {
+        opponentOf(socket).emit('ship-sunk', shipName);
+        socket.emit('ship-sunk', shipName);
+    });
+
+    socket.on("game-over", () => {
+        socket.emit('you-lost');
+        opponentOf(socket).emit('you-won');
+    })
 
 
 

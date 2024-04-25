@@ -29,6 +29,18 @@ socket.on('make-inactive', () => {
     boards.opponentBoard.makeInactive();
 });
 
+socket.on("ship-sunk", (shipName) => {
+    alert(`${shipName} sunk!`);
+})
+
+socket.on('you-lost', () => {
+    alert('GAME OVER. You lost.')
+});
+
+socket.on('you-won', () => {
+    alert('GAME OVER. You won!')
+});
+
 
 
 socket.on("receive-fire", (rowName, colName) => {
