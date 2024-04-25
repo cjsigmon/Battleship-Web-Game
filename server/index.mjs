@@ -14,11 +14,10 @@ const io = new Server(3000, {
 });
 
 
+const rows = await setupDB();
 
 
 io.on("connection", async socket => {
-    const rows = await setupDB();
-    socket.emit("scores", rows)
     let id = socket.id;
     clients[socket.id] = socket;
 
@@ -29,6 +28,9 @@ io.on("connection", async socket => {
     });
 
     join(socket); // Fill 'players' data structure
+
+    console.table(rows)
+    socket.emit("scores", rows)
 
     if (opponentOf(socket)) { // If the current player has an opponent the game can begin
         socket.emit("game-begin", players[socket.id].name);
