@@ -1,13 +1,17 @@
 const clients = {};
 let players = {}; // opponent: scoket.id of the opponent, name = "p2" | "p1", socket: player's socket
 let unmatched;
+import { Server } from 'socket.io';
+import { setupDB } from './setup_db.mjs';
 
-const io = require('socket.io')(3000, {
+setupDB();
+
+const io = new Server(3000, {
     cors: {
         origin: ['http://localhost:8080']
     }
-}
-);
+});
+
 
 
 
