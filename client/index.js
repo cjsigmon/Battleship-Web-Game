@@ -13,6 +13,10 @@ socket.on("connect", () => {
     displayText(socket.id);
 });
 
+socket.on("scores", (rows) => {
+    console.log(rows);
+})
+
 socket.on("game-begin", (name) => {
     myPlayerName = name;
     console.log("my name ", myPlayerName);

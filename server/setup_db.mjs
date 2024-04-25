@@ -22,8 +22,7 @@ const rows = await db.all('SELECT * FROM scores');
 // Print the retrieved data
 console.log('Scores:');
 console.table(rows);
-db.close();
-
+return rows;
 }
 
 

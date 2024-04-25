@@ -3,8 +3,9 @@ let players = {}; // opponent: scoket.id of the opponent, name = "p2" | "p1", so
 let unmatched;
 import { Server } from 'socket.io';
 import { setupDB } from './setup_db.mjs';
+import { db } from './db.mjs';
 
-setupDB();
+
 
 const io = new Server(3000, {
     cors: {
@@ -15,7 +16,9 @@ const io = new Server(3000, {
 
 
 
-io.on("connection", socket => {
+io.on("connection", async socket => {
+    const rows = await setupDB();
+    socket.emit("scores", rows)
     let id = socket.id;
     clients[socket.id] = socket;
 
