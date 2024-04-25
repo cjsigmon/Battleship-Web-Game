@@ -48,9 +48,11 @@ export class Ship {
         Ship.allShips.push(this);
     }
 
-    receiveHit() {
+    hit() {
+        this.#hits++;
         if (this.#occupiedTiles.every((tile) => tile.isHit())) {
             this.#sunk = true;
+            this.#playerBoard.sunkShip(this);
         }
     }
 
@@ -79,6 +81,10 @@ export class Ship {
     }
     getColName() {
         return this.#colName;
+    }
+
+    getName() {
+        return this.#name;
     }
 
 

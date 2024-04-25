@@ -54,8 +54,12 @@ export class Tile {
 
     hit() {
         this.#hit = true;
-        this.#element.classList.add('hit')
+        this.#element.classList.add('hit');
+        this.getOccupyingShip().hit();
+
     }
+
+
 
     isOccupied() {
         return this.#occupied;

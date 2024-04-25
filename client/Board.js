@@ -201,7 +201,14 @@ export class Board {
     }
 
    
+    getSocket() {
+        return this.#socket;
+    }
 
+    sunkShip(ship) {
+        alert(ship.getName());
+        this.#socket.emit("sunk-ship", ship.getName());
+    }
 
 
     getElement() {
