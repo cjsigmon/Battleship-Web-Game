@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { displayText, showHighScores, winScreen, getGlobalScore, setGlobalScore } from "./utils.js";
+import { displayText, showHighScores, winScreen, getGlobalScore, setGlobalScore, setHelper, setAlert } from "./utils.js";
 import { setupBoards } from "./setupboard.js";
 
 
@@ -22,13 +22,17 @@ socket.on("game-begin", (name) => {
     myPlayerName = name;
     setGlobalScore(0);
     console.log("my name ", myPlayerName);
+    setHelper(`Welcome ${myPlayerName}`, "Click on a ship, use arrow keys to adjust position, then click Place Ship.")
 });
 
 socket.on("disable-placing-start-gameplay", () => {
-    alert('both players have placed ships. Begin!')
+    setAlert("Game has begun!")
     if (myPlayerName == "p1") {
         boards.opponentBoard.makeActive();
-    } 
+    } else {
+        setHelper("Opponent's turn", "Please wait for them to finish their move.");
+
+    }
 
 })
 
@@ -40,23 +44,24 @@ socket.on('make-inactive', () => {
 });
 
 socket.on("you-sunk-opponent", (shipName) => {
-    alert(`You sunk opponent's ${shipName}!`);
+
+    setAlert(`You sunk opponent's ${shipName}!`);
     setGlobalScore(getGlobalScore() +100);
 });
 
 socket.on("my-ship-sunk", (shipName) => {
-    alert(`your ${shipName} sunk!`);
+    setAlert(`your ${shipName} sunk!`);
     setGlobalScore(getGlobalScore() -10);
 })
 
 socket.on('you-lost', () => {
-    alert('GAME OVER. You lost.');
+    setHelper('GAME OVER. You lost.');
     setGlobalScore(0);
     boards.opponentBoard.makeActive();
 });
 
 socket.on('you-won', async () => {
-    alert('GAME OVER. You won!')
+    setHelper(`GAME OVER. You won! Score: ${getGlobalScore()}`)
     await winScreen();
 });
 
@@ -69,15 +74,19 @@ socket.on("receive-fire", (rowName, colName) => {
 
 socket.on("you-got-hit", (rowName, colName) => {
     boards.opponentBoard.getTile(rowName, colName).hit();
+    setAlert("You got hit!")
     setGlobalScore(getGlobalScore() - 10);
 });
 
 socket.on("my-fire-hit", (rowName, colName) => {
+    setAlert("Hit!")
     boards.opponentBoard.getTile(rowName, colName).hit();
     setGlobalScore(getGlobalScore() + 10);
 });
 
 socket.on("my-fire-missed", (rowName, colName) => {
+    setAlert("Your fire missed")
+
     boards.opponentBoard.getTile(rowName, colName).miss();
 });
 

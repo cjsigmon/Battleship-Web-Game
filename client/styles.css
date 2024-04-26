@@ -46,7 +46,7 @@ h1 {
 
 
 .active {
-    border: 20px solid green;
+    outline: 20px solid green;
 }
 
 .unplaced-ship {
@@ -171,7 +171,7 @@ button {
  #helper {
     position: absolute;
     width: 70%;
-    height: 8%;
+    min-height: 12%;
     bottom: 0;
     left: 0;
     right: 0;
@@ -186,3 +186,27 @@ button {
     margin-left: 160px;
     margin-right: 160pcx
  }
+
+ #flagPole {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 10px;
+    border-left: 1px solid;
+    box-shadow: 10px 0px 20px black;
+    left: 50px;
+ }
+
+ #aboveHelper {
+    position: absolute;
+    top: -80px;
+    left: 50px;
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 60px;
+    background-color: rgb(67, 0, 0);
+ }
+
+#aboveHelperTxt {
+    color: rgb(213, 213, 213);
+}

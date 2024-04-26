@@ -106,6 +106,24 @@ export function setGlobalScore(amount) {
     globalScore = amount;
 }
 
+const helperTxt = document.getElementById("helperTxt");
+export function setHelper(...strings) {
+    helperTxt.innerHTML = '';
+    strings.forEach((s) => {
+        helperTxt.innerHTML += s;
+        helperTxt.innerHTML += '<br>';
+    });
+}
+
+const aboveHelperTxt = document.getElementById("aboveHelperTxt");
+export function setAlert(...strings) {
+    aboveHelperTxt.innerHTML = '';
+    strings.forEach((s) => {
+        aboveHelperTxt.innerHTML += s;
+        aboveHelperTxt.innerHTML += '<br>';
+    });
+}
+
 
 
 

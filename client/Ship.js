@@ -1,4 +1,4 @@
-import { nextCharacter, prevCharacter } from "./utils"
+import { nextCharacter, prevCharacter, setHelper } from "./utils"
 import { letterToNumber } from "./utils"
 let placeShipBtn = document.getElementById("placeShipBtn");
 
@@ -186,6 +186,8 @@ export class Ship {
 
     makeImmovable() {
         document.removeEventListener('keydown', this.evalKeyDownBound);
+        setHelper("Great! Now both players must place all their ships for gameplay to begin.")
+
     }
 
 

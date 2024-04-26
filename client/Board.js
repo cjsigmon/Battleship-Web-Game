@@ -1,5 +1,5 @@
 import { Tile } from "./Tile";
-import { addChild } from "./utils";
+import { addChild, setHelper } from "./utils";
 import { letterToNumber } from "./utils";
 
 export class Board {
@@ -206,14 +206,19 @@ export class Board {
     makeActive() {
         if (this.#boardType == "opponent") {
             this.#active = true;
-            this.#element.classList.add("active")
+            this.#element.classList.add("active");
+            setHelper('Your turn', 
+            'Select a square on the left board to fire!');
+    
         }
 
     }
 
     makeInactive() {
         this.#active = false;
-        this.#element.classList.remove("active")
+        this.#element.classList.remove("active");
+        setHelper("Opponent's turn");
+
     }
 
    
