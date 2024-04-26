@@ -27,10 +27,15 @@
 
 
     <div id="winModal" class="cover-all">
-        <div id="winModalDisplay">
-            <h3>PLEASE ENTER YOUR INITIALS:</h3>
-
-        </div>
+        <form id="winModalDisplay">
+            <div>
+                <label for="initials">PLEASE TYPE IN YOUR INITIALS:</label>
+                <input type="text" id="initials" name="initials" required minlength="3" maxlength="3" size="3" />
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
     </div>
 
     <script type="module" src="utils.js"></script>
