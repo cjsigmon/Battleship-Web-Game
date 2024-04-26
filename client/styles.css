@@ -1,9 +1,17 @@
+body {
+    background-color: rgb(215, 221, 255);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 .cover-all {
     width: 100%;
     height: 100%;
 }
 
-h1 {
+h1, h2, h3, th, td {
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
@@ -29,8 +37,9 @@ h1 {
     bottom: 20vh;
     min-width: 88px;
     padding: 16px;
-    background-color: green;
+    background-color: blue;
     display: none;
+    color: aliceblue;
 }
 
 #background {
@@ -64,7 +73,7 @@ h1 {
 .clicked-ship {
     top: 0;
     left: 0;
-    outline: 5px solid yellow;
+    outline: 5px solid aquamarine;
 }
 
 .clicked-ship, .placed, button {
@@ -85,9 +94,18 @@ h1 {
     outline: 1px solid;
     background: none;
 }
+.tile:hover {
+    cursor: pointer;
+    background-color: rgba(0, 255, 255, 0.209);
+}
 
 img {
     margin: 0 !important;
+}
+
+img:hover {
+    cursor: pointer;
+    background-color: rgba(0, 255, 255, 0.209);
 }
 
 .hit {
@@ -156,7 +174,12 @@ button {
     border-radius: 20px;
  }
 
-
+#chatWrapper {
+    margin-left: 30px;
+    width: 150px;
+    height: 159px;
+    overflow-y: scroll;
+}
 
  #chat {
     height: 50px;
@@ -176,12 +199,12 @@ button {
     left: 0;
     right: 0;
     margin: auto;
-    background-color: darkblue;
+    background-color: rgb(25, 193, 193);
     border-radius: 50px 15px 0px 0px;
  }
 
  #helper > p {
-    color: aliceblue;
+    color: black;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-left: 160px;
     margin-right: 160pcx
