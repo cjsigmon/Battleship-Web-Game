@@ -4,8 +4,10 @@ let unmatched;
 import { Server } from 'socket.io';
 import { setupDB } from './setup_db.mjs';
 import { db } from './db.mjs';
+import { runAPI } from './api.mjs';
 
 
+runAPI();
 
 const io = new Server(3000, {
     cors: {
