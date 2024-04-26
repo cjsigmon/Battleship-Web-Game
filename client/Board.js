@@ -15,6 +15,7 @@ export class Board {
     #allTiles = []
     #placedShips = []
     #shipsSunk = 0;
+    #totalShips = 0;
 
 
     constructor(sideLen, parentElem, boardType, tilesPerSide, tileSize, socket) {
@@ -64,9 +65,6 @@ export class Board {
                 const emptyRowStart = this.findEmptyRowStart(ship.getTilesLength());
                 cellsToOccupy = this.getRowCells(emptyRowStart.rowName, emptyRowStart.colName, ship.getTilesLength());
                 ship.setStartTile(emptyRowStart.rowName, emptyRowStart.colName);
-            
-            
-
         }
 
         addChild(ship.getElement(), this.getElement());
@@ -95,9 +93,24 @@ export class Board {
             });
         }
 
-        this.#placedShips.push(ship);
+        this.#addShip(ship);
 
         // this.occupyTiles(ship.getTiles());
+    }
+
+    getTotalShips() {
+        return this.#totalShips;
+    }
+    setTotalShips(amt) {
+        this.#totalShips = amt;
+    }
+
+    #addShip(ship) {
+        this.#placedShips.push(ship);
+        if (this.#placedShips.length == this.getTotalShips()) {
+            this.#socket.emit("ships-placed");
+        }
+
     }
 
     getColCells(startRowName, startColName, length) {

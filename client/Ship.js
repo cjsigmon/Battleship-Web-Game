@@ -46,6 +46,7 @@ export class Ship {
 
 
         Ship.allShips.push(this);
+        this.#playerBoard.setTotalShips(this.#playerBoard.getTotalShips() + 1);
     }
 
     hit() {

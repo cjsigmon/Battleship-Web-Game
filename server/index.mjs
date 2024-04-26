@@ -31,7 +31,6 @@ io.on("connection", async socket => {
 
     join(socket); // Fill 'players' data structure
 
-    console.table(rows)
     socket.emit("scores", rows)
 
     if (opponentOf(socket)) { // If the current player has an opponent the game can begin
@@ -39,6 +38,16 @@ io.on("connection", async socket => {
 
         opponentOf(socket).emit("game-begin", players[opponentOf(socket).id].name);
     }
+
+    socket.on("ships-placed", () => {
+        players[socket.id].placedShips = true;
+
+        if (opponentOf(socket) && players[opponentOf(socket).id].placedShips) { // If the current player has an opponent the game can begin
+            socket.emit("disable-placing-start-gameplay", players[socket.id].name);
+    
+            opponentOf(socket).emit("disable-placing-start-gameplay", players[opponentOf(socket).id].name);
+        }
+    })
 
 
 
@@ -96,7 +105,8 @@ function join(socket) {
     players[socket.id] = {
         opponent: unmatched,
         name: "p1",
-        socket: socket
+        socket: socket,
+        placedShips: false
     };
 
     // If 'unmatched' is defined it contains the socket.id of the player who was waiting for an opponent

@@ -22,11 +22,15 @@ socket.on("game-begin", (name) => {
     myPlayerName = name;
     setGlobalScore(0);
     console.log("my name ", myPlayerName);
+});
+
+socket.on("disable-placing-start-gameplay", () => {
+    alert('both players have placed ships. Begin!')
     if (myPlayerName == "p1") {
         boards.opponentBoard.makeActive();
-
     } 
-});
+
+})
 
 socket.on('make-active', () => {
     boards.opponentBoard.makeActive();
@@ -48,6 +52,7 @@ socket.on("my-ship-sunk", (shipName) => {
 socket.on('you-lost', () => {
     alert('GAME OVER. You lost.');
     setGlobalScore(0);
+    boards.opponentBoard.makeActive();
 });
 
 socket.on('you-won', async () => {
