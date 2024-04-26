@@ -8,5 +8,8 @@
   "scripts": {
     "build": "snowpack build",
     "start": "snowpack dev"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }

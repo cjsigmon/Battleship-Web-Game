@@ -10,7 +10,7 @@ let activePlayer = false;
 
 
 socket.on("connect", () => {
-    displayText(socket.id);
+    console.log("socket.id", socket.id);
 });
 
 socket.on("scores", (rows) => {

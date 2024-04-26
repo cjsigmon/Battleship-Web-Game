@@ -10,20 +10,34 @@
     <h1>BATTLESHIP!!!</h1>
 
 
-    <div id="background" class="cover-all"></div>
+    <div id="main" class="cover-all">
+        <table id="hiScores">
+            <tr>
+                <th>PLAYER</th>
+                <th>SCORE</th>
+            </tr>
+    
+        </table>
+
+        <div id="background"></div>
+
+        <div id="shipsSelect"></div>
+
+    </div>
+    
     <button id="placeShipBtn">Place Ship</button>
-    <div id="shipsSelect"></div>
-    <table id="hiScores">
-        <tr>
-            <th>PLAYER</th>
-            <th>SCORE</th>
-        </tr>
+    
 
-    </table>
-
-    <input type="text" id="messageField" name="chat"><br><br>
-    <button id="sendMessageBtn">SEND</button>
+    <div id="chat">
+        <input type="text" id="messageField" name="chat"><br><br>
+        <button id="sendMessageBtn">SEND</button>
+    </div>
     <div id="displayText"></div>
+
+
+    <div id="helper">
+        <p>Welcome to battlship. You are player ...</p>
+    </div>
 
 
     <div id="winModal" class="cover-all">
