@@ -2,7 +2,7 @@
   "name": "server",
   "main": "index.mjs",
   "scripts": {
-    "start": "node index.mjs",
+    "start": "node index.mjs && cd client && snowpack dev",
     "devStart": "nodemon index.mjs"
   },
   "devDependencies": {
