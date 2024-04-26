@@ -1,5 +1,5 @@
 import { Tile } from "./Tile";
-import { addChild, setHelper } from "./utils";
+import { addChild, setHelper, isGameOver, setGameOver } from "./utils";
 import { letterToNumber } from "./utils";
 
 export class Board {
@@ -207,17 +207,16 @@ export class Board {
         if (this.#boardType == "opponent") {
             this.#active = true;
             this.#element.classList.add("active");
-            setHelper('Your turn', 
-            'Select a square on the left board to fire!');
+            if (!isGameOver()) setHelper('Your turn', 'Select a square on the left board to fire!');
     
         }
 
     }
 
-    makeInactive() {
+    makeInactive(gameOver) {
         this.#active = false;
         this.#element.classList.remove("active");
-        setHelper("Opponent's turn");
+        if (!isGameOver()) setHelper("Opponent's turn");
 
     }
 

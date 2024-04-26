@@ -1,3 +1,12 @@
+let gameOver = false;
+export function isGameOver() {
+    return gameOver;
+}
+
+export function setGameOver(tf) {
+    gameOver = true;
+}
+
 export function displayText(text) {
     const elem = document.getElementById("displayText");
     const textElem = document.createElement("p");
@@ -49,7 +58,7 @@ export async function postScore(initials, score) {
         initials: initials,
         score: score
     };
-    alert('posting')
+    setAlert("Submitting your score:", score)
 
     await postData("http://localhost:7777/scores", body)
     .then(async (data) => {
@@ -83,6 +92,8 @@ const winModal = document.getElementById("winModal");
 
 export async function winScreen() {
     winModal.style.display = 'flex';
+    setHelper(`GAME OVER. You won! Score: ${getGlobalScore()}`)
+
     initialsBtn.onclick = getInitials;
 }
 

@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
     <link rel="stylesheet" href="styles.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
-    <h1>BATTLESHIP!!!</h1>
 
+
+
+    <h1 id="title">BATTLESHIP!!!</h1>
 
     <div id="main" class="cover-all">
+        
         <table id="hiScores">
             <tr>
                 <th>PLAYER</th>
@@ -44,7 +49,10 @@
         <div id="aboveHelper">
             <p id="aboveHelperTxt"></p>
         </div>
-        <p id="helperTxt">Welcome to battlship. You are player ...</p>
+        <p id="helperTxt">Welcome to battlship. Trying to connect you with a player. Use chat to test connection.</p>
+    </div>
+
+    <div id='map'>
     </div>
 
 
