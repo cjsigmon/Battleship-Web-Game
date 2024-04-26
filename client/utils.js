@@ -83,20 +83,28 @@ const winModal = document.getElementById("winModal");
 
 export async function winScreen() {
     winModal.style.display = 'flex';
-    
     initialsBtn.onclick = getInitials;
 }
 
 const getInitials = function() {
     const initials = document.getElementById("initials");
     if (initials.value.length === 3) {
-        postScore(initials.value, 888).then(() => {
+        postScore(initials.value, getGlobalScore()).then(() => {
             showHighScores();
             winModal.style.display = 'none';
-
+            setGlobalScore(0);
         })
     }
 };
+
+let globalScore = 0;
+export function getGlobalScore() {
+    return globalScore;
+}
+
+export function setGlobalScore(amount) {
+    globalScore = amount;
+}
 
 
 

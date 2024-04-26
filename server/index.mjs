@@ -54,6 +54,7 @@ io.on("connection", async socket => {
 
     socket.on("hit", function(rowName, colName) {
         opponentOf(socket).emit("my-fire-hit", rowName, colName); // Emit for the opponent
+        socket.emit('you-got-hit')
         socket.emit("make-active");
         opponentOf(socket).emit("make-inactive");
     });
@@ -65,8 +66,8 @@ io.on("connection", async socket => {
     });
 
     socket.on("ship-sunk", (shipName) => {
-        opponentOf(socket).emit('ship-sunk', shipName);
-        socket.emit('ship-sunk', shipName);
+        opponentOf(socket).emit('you-sunk-opponent', shipName);
+        socket.emit('my-ship-sunk', shipName);
     });
 
     socket.on("game-over", () => {

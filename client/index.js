@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { displayText, showHighScores, winScreen } from "./utils.js";
+import { displayText, showHighScores, winScreen, getGlobalScore, setGlobalScore } from "./utils.js";
 import { setupBoards } from "./setupboard.js";
 
 
@@ -20,6 +20,7 @@ socket.on("scores", (rows) => {
 
 socket.on("game-begin", (name) => {
     myPlayerName = name;
+    setGlobalScore(0);
     console.log("my name ", myPlayerName);
     if (myPlayerName == "p1") {
         boards.opponentBoard.makeActive();
@@ -34,12 +35,19 @@ socket.on('make-inactive', () => {
     boards.opponentBoard.makeInactive();
 });
 
-socket.on("ship-sunk", (shipName) => {
-    alert(`${shipName} sunk!`);
+socket.on("you-sunk-opponent", (shipName) => {
+    alert(`You sunk opponent's ${shipName}!`);
+    setGlobalScore(getGlobalScore() +100);
+});
+
+socket.on("my-ship-sunk", (shipName) => {
+    alert(`your ${shipName} sunk!`);
+    setGlobalScore(getGlobalScore() -10);
 })
 
 socket.on('you-lost', () => {
-    alert('GAME OVER. You lost.')
+    alert('GAME OVER. You lost.');
+    setGlobalScore(0);
 });
 
 socket.on('you-won', async () => {
@@ -54,8 +62,14 @@ socket.on("receive-fire", (rowName, colName) => {
     boards.playerBoard.evaluateFire(rowName, colName);
 });
 
+socket.on("you-got-hit", (rowName, colName) => {
+    boards.opponentBoard.getTile(rowName, colName).hit();
+    setGlobalScore(getGlobalScore() - 10);
+});
+
 socket.on("my-fire-hit", (rowName, colName) => {
     boards.opponentBoard.getTile(rowName, colName).hit();
+    setGlobalScore(getGlobalScore() + 10);
 });
 
 socket.on("my-fire-missed", (rowName, colName) => {
