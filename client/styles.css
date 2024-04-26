@@ -80,5 +80,23 @@ img {
 
 }
 
+#winModal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
+#winModalDisplay {
+    width: 300px;
+    height: 200px;
+    background-color: aquamarine;
+    padding: 1em;
+}
+
+#winModalDisplay h3 {
+   font-family: sans-serif;
+}

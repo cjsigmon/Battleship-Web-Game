@@ -38,6 +38,27 @@ export function showHighScores(rows) {
     })
 }
 
+export async function postScore(initials, score) {
+    const body = {
+        initials: initials,
+        score: score
+    };
+
+    await postData("http://localhost:7777/scores", body)
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+
+    const scores = await fetch("http://localhost:7777/scores");
+    showHighScores(scores);
+
+}
+
+
+
 export async function postData(url = "", data = {}) {
     const response = await fetch(url, {
         method: "POST",
