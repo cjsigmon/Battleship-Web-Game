@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { displayText, showHighScores } from "./utils.js";
+import { displayText, showHighScores, winScreen } from "./utils.js";
 import { setupBoards } from "./setupboard.js";
 
 
@@ -15,7 +15,7 @@ socket.on("connect", () => {
 
 socket.on("scores", (rows) => {
     console.table(rows);
-    showHighScores(rows)
+    showHighScores();
 })
 
 socket.on("game-begin", (name) => {
@@ -42,8 +42,9 @@ socket.on('you-lost', () => {
     alert('GAME OVER. You lost.')
 });
 
-socket.on('you-won', () => {
+socket.on('you-won', async () => {
     alert('GAME OVER. You won!')
+    await winScreen();
 });
 
 
