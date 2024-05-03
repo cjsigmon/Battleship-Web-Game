@@ -1,4 +1,6 @@
-To run everything, just run 
+Watch video demo at https://youtu.be/3vpfmnwZBDo
+
+To set up everything on a local server, just run 
 ```
 cd server
 npm install
