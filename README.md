@@ -1,3 +1,13 @@
+To run everything, just run 
+```
+cd server
+npm install
+npm run start
+
+```
+
+Alternatively, to run the server and client separately, do the following:
+
 To start the server on port 3000, the api at port 7777, and set up the database type in:
 ```
 cd server

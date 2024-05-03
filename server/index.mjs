@@ -7,13 +7,15 @@ import { db } from './db.mjs';
 import { runAPI } from './api.mjs';
 
 
+
 runAPI();
 
 const io = new Server(3000, {
     cors: {
-        origin: ['http://localhost:8080']
+        origin: true
     }
 });
+
 
 
 const rows = await setupDB();
