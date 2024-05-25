@@ -1,9 +1,10 @@
 {
   "name": "server",
-  "main": "index.html",
+  "main": "client/index.html",
   "scripts": {
     "start": "concurrently \"nodemon index.mjs\" \"cd client && snowpack dev\"",
-    "devStart": "nodemon index.mjs"
+    "devStart": "nodemon index.mjs",
+    "build": "snowpack build"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
