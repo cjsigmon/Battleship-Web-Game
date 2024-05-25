@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "main": "client/index.html",
+  "main": "index.mjs",
   "scripts": {
     "start": "concurrently \"nodemon index.mjs\" \"cd client && snowpack dev\"",
     "devStart": "nodemon index.mjs",
