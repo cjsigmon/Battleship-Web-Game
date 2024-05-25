@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Change to the server directory
-cd server
-
 # Install dependencies
 npm install
 
