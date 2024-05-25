@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "main": "index.mjs",
+  "name": "ship-pf-battle",
+  "main": "public/index.html",
   "scripts": {
     "start": "concurrently \"nodemon index.mjs\" \"cd client && snowpack dev\"",
     "devStart": "nodemon index.mjs",
