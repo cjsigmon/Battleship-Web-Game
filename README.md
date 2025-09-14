@@ -1,5 +1,8 @@
 Watch video demo at https://youtu.be/3vpfmnwZBDo
 
+<img width="1081" height="548" alt="Screenshot 2025-09-13 204306" src="https://github.com/user-attachments/assets/8936bd78-606d-4455-a12e-eda3443baa10" />
+
+
 To set up everything on a local server, just run 
 ```
 cd server
